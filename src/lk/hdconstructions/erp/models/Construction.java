@@ -17,6 +17,10 @@ public class Construction {
 		
 	}
 	
+	public int getCid() {
+		return cid;
+	}
+	
 	public String getName() {
 		return name;
 	}

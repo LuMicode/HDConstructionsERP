@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import lk.hdconstructions.erp.utils.constants.DBConstants;
+
 
 /**
  *
@@ -20,12 +22,13 @@ public class DBConnection {
 	
 	private Connection createConnection() throws SQLException, ClassNotFoundException {
 		
-		String username = Constants.DB_USERNAME;
-		String password = Constants.DB_PASSWORD;
-		String url = Constants.DB_URL;
+		String username = DBConstants.DB_USERNAME;
+		String password = DBConstants.DB_PASSWORD;
+		String url = DBConstants.DB_URL;
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = DriverManager.getConnection(url, username, password);
+		conn.setAutoCommit(false);
 		
 		return conn;
 		
