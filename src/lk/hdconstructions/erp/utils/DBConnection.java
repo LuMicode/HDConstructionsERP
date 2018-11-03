@@ -18,8 +18,17 @@ public class DBConnection {
 		conn = createConnection();
 	}
 	
-	public Connection getConnection() {
-		return this.conn;
+	private Connection createConnection() throws SQLException, ClassNotFoundException {
+		
+		String username = Constants.DB_USERNAME;
+		String password = Constants.DB_PASSWORD;
+		String url = Constants.DB_URL;
+		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn = DriverManager.getConnection(url, username, password);
+		
+		return conn;
+		
 	}
 	
 	public static DBConnection getInstance() throws SQLException, ClassNotFoundException {
@@ -34,15 +43,15 @@ public class DBConnection {
 		
 	}
 	
-	private Connection createConnection() throws SQLException, ClassNotFoundException {
-		
-		String username = Constants.DB_USERNAME;
-		String password = Constants.DB_PASSWORD;
-		String url = Constants.DB_URL;
-		
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		Connection conn = DriverManager.getConnection(url, username, password);
+	public Connection getConnection() {
 		return conn;
-		
 	}
+	
+	public void closeConnection() throws SQLException {
+		conn.close();
+	}
+	
+	
+	
+	
 }
