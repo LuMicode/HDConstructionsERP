@@ -42,6 +42,7 @@ public class CustomerDAO {
 			return true;
 			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
 			if(conn != null) {
 				conn.rollback();
@@ -71,20 +72,41 @@ public class CustomerDAO {
 		Connection conn = DBConnection.getInstance().getConnection();
 		
 		
-		stmt = conn.createStatement();
-		ResultSet results = stmt.executeQuery(QueryConstants.GET_ALL_CUSTOMERS);
-		
-		while(results.next()) {
+		try {
 			
-			Customer customer = new Customer(
-					results.getString("nic"),
-					results.getString("firstName"),
-					results.getString("lastName"),
-					results.getString("company"),
-					results.getString("address"),
-					results.getString("telephone")
-					);
-			customers.add(customer);
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery(QueryConstants.GET_ALL_CUSTOMERS);
+			
+			while(results.next()) {
+				
+				Customer customer = new Customer(
+						results.getString("nic"),
+						results.getString("firstName"),
+						results.getString("lastName"),
+						results.getString("company"),
+						results.getString("address"),
+						results.getString("telephone")
+						);
+				customers.add(customer);
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			if(conn != null) {
+				conn.rollback();
+			}	
+					
+		} finally {
+			
+			if(!stmt.isClosed()) {
+				stmt.close();
+			}
+			
+			if(!conn.isClosed()) {
+				DBConnection.getInstance().getConnection().close();
+			}
 			
 		}
 		
@@ -98,22 +120,51 @@ public class CustomerDAO {
 		
 		Connection conn = DBConnection.getInstance().getConnection();
 		
-		getCustomerByNICQuery = conn.prepareStatement(QueryConstants.GET_CUSTOMER_BY_NIC);
-		getCustomerByNICQuery.setString(1, nic);
-		ResultSet results = getCustomerByNICQuery.executeQuery();
-		
-		while(results.next()) {
-			customer = new Customer(
-						results.getString("nic"),
-						results.getString("firstName"),
-						results.getString("lastName"),
-						results.getString("company"),
-						results.getString("address"),
-						results.getString("telephone")
-					);
+		try {
+			
+			getCustomerByNICQuery = conn.prepareStatement(QueryConstants.GET_CUSTOMER_BY_NIC);
+			getCustomerByNICQuery.setString(1, nic);
+			ResultSet results = getCustomerByNICQuery.executeQuery();
+			
+			while(results.next()) {
+				customer = new Customer(
+							results.getString("nic"),
+							results.getString("firstName"),
+							results.getString("lastName"),
+							results.getString("company"),
+							results.getString("address"),
+							results.getString("telephone")
+						);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			if(conn != null) {
+				conn.rollback();
+			}	
+			
+		} finally {
+			
+			if(!getCustomerByNICQuery.isClosed()) {
+				getCustomerByNICQuery.close();
+			}
+			
+			if(!conn.isClosed()) {
+				DBConnection.getInstance().getConnection().close();
+			}
+			
 		}
 		
 		return customer;
+	}
+	
+	// Update customer
+	public static boolean updateCustomer(Customer customer) throws ClassNotFoundException, SQLException {
+		
+		Connection conn = DBConnection.getInstance().getConnection();
+
+		return false;
 	}
 	
 }
