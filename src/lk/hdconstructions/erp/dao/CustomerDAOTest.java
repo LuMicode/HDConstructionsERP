@@ -8,10 +8,15 @@ import lk.hdconstructions.erp.models.Customer;
 public class CustomerDAOTest {
 	
 	public static void main(String[] args) {
-		Customer customer = new Customer("961264022V", "Nandun", "Bandara", "goodword", "123, bubmble bee", "+94772506467");
+		Customer customer = new Customer("981264022V", "Malith", "Bandara", "goodword", "123, bubmble bee", "+94772506467");
 	
 		try {
 		CustomerDAO.addNewCustomer(customer);
+		
+		customer.setTelephone("+94773553518");
+		CustomerDAO.updateCustomer(customer);
+		
+		
 		} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 			e.printStackTrace();

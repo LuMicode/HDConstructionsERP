@@ -14,6 +14,10 @@ public class QueryConstants {
 	public static final String ADD_NEW_CUSTOMER = "Insert into customer(nic, firstName, lastName, company, address, telephone)" + "VALUES(?, ?, ?, ?, ?, ?)";
 	public static final String GET_ALL_CUSTOMERS = "SELECT * from customer";
 	public static final String GET_CUSTOMER_BY_NIC = "SELECT * FROM customer WHERE nic = ?";
+	public static final String UPDATE_CUSTOMER = "UPDATE customer SET "
+												+ "firstName = ?, lastName = ?, company = ?, address = ?, telephone = ? "
+												+ "WHERE nic = ?";
+	
 }
 	
 	

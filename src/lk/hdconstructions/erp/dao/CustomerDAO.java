@@ -162,7 +162,42 @@ public class CustomerDAO {
 	// Update customer
 	public static boolean updateCustomer(Customer customer) throws ClassNotFoundException, SQLException {
 		
+		PreparedStatement updateCustomerQuery = null;
 		Connection conn = DBConnection.getInstance().getConnection();
+		
+		try {
+			
+			updateCustomerQuery = conn.prepareStatement(QueryConstants.UPDATE_CUSTOMER);
+			updateCustomerQuery.setString(1, customer.getFirstName());
+			updateCustomerQuery.setString(2,  customer.getLastName());
+			updateCustomerQuery.setString(3,  customer.getCompany());
+			updateCustomerQuery.setString(4, customer.getAddress());
+			updateCustomerQuery.setString(5,  customer.getTelephone());
+			updateCustomerQuery.setString(6, customer.getNIC());
+			
+			updateCustomerQuery.executeUpdate();
+			conn.commit();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			if(conn != null) {
+				conn.rollback();
+			}	
+			
+		} finally {
+			
+			if(!updateCustomerQuery.isClosed()) {
+				updateCustomerQuery.close();
+			}
+			
+			if(!conn.isClosed()) {
+				DBConnection.getInstance().getConnection().close();
+			}
+			
+		}
 
 		return false;
 	}
