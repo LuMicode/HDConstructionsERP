@@ -29,11 +29,12 @@ public class CustomerDAO {
 					
 			addCustomerQuery = conn.prepareStatement(QueryConstants.ADD_NEW_CUSTOMER);
 			addCustomerQuery.setString(1, customer.getNIC());
-			addCustomerQuery.setString(2, customer.getFirstName());
-			addCustomerQuery.setString(3, customer.getLastName());
-			addCustomerQuery.setString(4, customer.getCompany());
-			addCustomerQuery.setString(5, customer.getAddress());
-			addCustomerQuery.setString(6, customer.getTelephone());
+			addCustomerQuery.setString(2,  customer.getTitle());
+			addCustomerQuery.setString(3, customer.getFirstName());
+			addCustomerQuery.setString(4, customer.getLastName());
+			addCustomerQuery.setString(5, customer.getCompany());
+			addCustomerQuery.setString(6, customer.getAddress());
+			addCustomerQuery.setString(7, customer.getTelephone());
 			
 			
 			addCustomerQuery.executeUpdate();
@@ -81,6 +82,7 @@ public class CustomerDAO {
 				
 				Customer customer = new Customer(
 						results.getString("nic"),
+						results.getString("title"),
 						results.getString("firstName"),
 						results.getString("lastName"),
 						results.getString("company"),
@@ -129,6 +131,7 @@ public class CustomerDAO {
 			while(results.next()) {
 				customer = new Customer(
 							results.getString("nic"),
+							results.getString("title"),
 							results.getString("firstName"),
 							results.getString("lastName"),
 							results.getString("company"),
@@ -168,12 +171,13 @@ public class CustomerDAO {
 		try {
 			
 			updateCustomerQuery = conn.prepareStatement(QueryConstants.UPDATE_CUSTOMER);
-			updateCustomerQuery.setString(1, customer.getFirstName());
-			updateCustomerQuery.setString(2,  customer.getLastName());
-			updateCustomerQuery.setString(3,  customer.getCompany());
-			updateCustomerQuery.setString(4, customer.getAddress());
-			updateCustomerQuery.setString(5,  customer.getTelephone());
-			updateCustomerQuery.setString(6, customer.getNIC());
+			updateCustomerQuery.setString(1, customer.getTitle());
+			updateCustomerQuery.setString(2, customer.getFirstName());
+			updateCustomerQuery.setString(3,  customer.getLastName());
+			updateCustomerQuery.setString(4,  customer.getCompany());
+			updateCustomerQuery.setString(5, customer.getAddress());
+			updateCustomerQuery.setString(6,  customer.getTelephone());
+			updateCustomerQuery.setString(7, customer.getNIC());
 			
 			updateCustomerQuery.executeUpdate();
 			conn.commit();

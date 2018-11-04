@@ -10,8 +10,9 @@ public class Customer {
 	private String address;
 	private String telephone;
 	
-	public Customer(String nic, String firstName, String lastName, String company, String address, String tel) {
+	public Customer(String nic, String title,  String firstName, String lastName, String company, String address, String tel) {
 		this.nic = nic;
+		this.title = title;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.company = company;
@@ -19,6 +20,9 @@ public class Customer {
 		this.telephone = tel;
 	}
 	
+	public String getTitle() {
+		return title;
+	}
 
 	public String getNIC() {
     	return nic;
@@ -43,6 +47,10 @@ public class Customer {
     public String getAddress() {
     	return address;
     }
+    
+    public void setTitle(String title) {
+		this.title = title;
+	}
     
     public void setNic(String nic) {
 		this.nic = nic;

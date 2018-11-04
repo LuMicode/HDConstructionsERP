@@ -8,12 +8,12 @@ import lk.hdconstructions.erp.models.Customer;
 public class CustomerDAOTest {
 	
 	public static void main(String[] args) {
-		Customer customer = new Customer("981264022V", "Malith", "Bandara", "goodword", "123, bubmble bee", "+94772506467");
+		Customer customer = new Customer("982264022V", "Mr",  "Malik", "Perera", "goodword", "123, bubmble bee", "+94772506467");
 	
 		try {
 		CustomerDAO.addNewCustomer(customer);
 		
-		customer.setTelephone("+94773553518");
+		customer.setTelephone("+94772345467");
 		CustomerDAO.updateCustomer(customer);
 		
 		
