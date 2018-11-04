@@ -2,55 +2,65 @@ package lk.hdconstructions.erp.models;
 
 public class Construction {
 	
-	private int cid;
-	private String name;
+	private Customer customer;
+	private int projectId ;
+	private String projectName;
+	private float price;
 	private String address;
-	private String constructionJob;
-	private String description;
 	
-	public Construction(int cid, String name, String address, String constructionJob, String description) {
-		this.cid = cid;
-		this.name = name;
+	public Construction(Customer customer, int projectId, String projectName, int price, String address ) {
+		this.customer = customer;
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.price = price;
 		this.address = address;
-		this.constructionJob = constructionJob;
-		this.description = description;
-		
 	}
 	
-	public int getCid() {
-		return cid;
+	public Construction(int projectId, String projectName, float price, String address ) {
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.price = price;
+		this.address = address;
 	}
-	 
-	public String getName() {
-		return name;
+
+	public Customer getCustomer() {
+		return customer;
+	}
+	
+	public int getProjectId() {
+		return projectId;
+	}
+	
+	public String getProjectName() {
+		return projectName;
+	}
+	
+	public float getPrice() {
+		return price;
 	}
 	
 	public String getAddress() {
 		return address;
 	}
 	
-	public String getConstructionJob() {
-		return constructionJob;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	public void setAddress(String address) {
 		this.address = address;
 	}
 	
-	public void setConstructionJob(String constructionJob) {
-		this.constructionJob = constructionJob;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+	
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 	
 }

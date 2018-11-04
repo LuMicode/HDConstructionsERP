@@ -28,11 +28,13 @@ public class CustomerDAO {
 		try {
 					
 			addCustomerQuery = conn.prepareStatement(QueryConstants.ADD_NEW_CUSTOMER);
-			addCustomerQuery.setInt(1, customer.getID());
-			addCustomerQuery.setString(2, customer.getName());
-			addCustomerQuery.setString(3, customer.getAddress());
-			addCustomerQuery.setInt(4, customer.getTel());
-			addCustomerQuery.setString(5, customer.getDescription());
+			addCustomerQuery.setString(1, customer.getNIC());
+			addCustomerQuery.setString(2, customer.getFirstName());
+			addCustomerQuery.setString(3, customer.getLastName());
+			addCustomerQuery.setString(4, customer.getCompany());
+			addCustomerQuery.setString(5, customer.getAddress());
+			addCustomerQuery.setString(6, customer.getTelephone());
+			
 			
 			addCustomerQuery.executeUpdate();
 			conn.commit();
@@ -75,17 +77,43 @@ public class CustomerDAO {
 		while(results.next()) {
 			
 			Customer customer = new Customer(
-					results.getInt("cusid"),
-					results.getString("name"),
+					results.getString("nic"),
+					results.getString("firstName"),
+					results.getString("lastName"),
+					results.getString("company"),
 					results.getString("address"),
-					results.getInt("tel"),
-					results.getString("description")
+					results.getString("telephone")
 					);
 			customers.add(customer);
 			
 		}
 		
 		return customers;
+	}
+	
+	public static Customer getCustomerByNIC(String nic) throws ClassNotFoundException, SQLException {
+		
+		Customer customer  =  null;
+		PreparedStatement getCustomerByNICQuery = null;
+		
+		Connection conn = DBConnection.getInstance().getConnection();
+		
+		getCustomerByNICQuery = conn.prepareStatement(QueryConstants.GET_CUSTOMER_BY_NIC);
+		getCustomerByNICQuery.setString(1, nic);
+		ResultSet results = getCustomerByNICQuery.executeQuery();
+		
+		while(results.next()) {
+			customer = new Customer(
+						results.getString("nic"),
+						results.getString("firstName"),
+						results.getString("lastName"),
+						results.getString("company"),
+						results.getString("address"),
+						results.getString("telephone")
+					);
+		}
+		
+		return customer;
 	}
 	
 }

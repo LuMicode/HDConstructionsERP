@@ -26,11 +26,10 @@ public class ConstructionDAO {
 		try {
 					
 			addConstructionQuery = conn.prepareStatement(QueryConstants.ADD_NEW_CONSTRUCTION);
-			addConstructionQuery.setInt(1, construction.getCid());
-			addConstructionQuery.setString(2, construction.getName());
-			addConstructionQuery.setString(3, construction.getAddress());
-			addConstructionQuery.setString(4, construction.getConstructionJob());
-			addConstructionQuery.setString(5, construction.getDescription());
+			addConstructionQuery.setString(1, construction.getCustomer().getNIC());
+			addConstructionQuery.setString(2, construction.getProjectName());
+			addConstructionQuery.setFloat(3, construction.getPrice());
+			addConstructionQuery.setString(4, construction.getAddress());
 			
 			addConstructionQuery.executeUpdate();
 			conn.commit();
@@ -73,18 +72,23 @@ public class ConstructionDAO {
 		while(results.next()) {
 			
 			Construction construction = new Construction(
-					results.getInt("cid"),
-					results.getString("name"),
-					results.getString("address"),
-					results.getString("constructionJob"),
-					results.getString("description")
+						results.getInt("projectId"),
+						results.getString("projectName"),
+						results.getFloat("price"),
+						results.getString("address")
 					);
+			
+			// retrive customer details and create customer object
+			Customer customer = CustomerDAO.getCustomerByNIC(results.getString("nic"));
+			construction.setCustomer(customer);
+			
 			constructions.add(construction);
 			
 		}
 		
 		return constructions;
 	}
+	
 
 	public static boolean deleteConstruction(int cid) throws ClassNotFoundException, SQLException{
 		

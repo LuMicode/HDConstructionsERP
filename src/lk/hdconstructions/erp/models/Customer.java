@@ -2,54 +2,74 @@ package lk.hdconstructions.erp.models;
 
 public class Customer {
 	
-	private int cusid;
-	private String name;
+	private String nic;
+	private String title;
+	private String firstName;
+	private String lastName;
+	private String company;
 	private String address;
-	private int tel;
-	private String description;
+	private String telephone;
 	
-	public Customer(int cusid, String name, String address, int tel, String description) {
-		this.cusid = cusid;
-		this.name = name;
+	public Customer(String nic, String firstName, String lastName, String company, String address, String tel) {
+		this.nic = nic;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.company = company;
 		this.address = address;
-		this.tel = tel;
-		this.description = description;
+		this.telephone = tel;
 	}
 	
 
-	public int getID() {
-    	return cusid;
+	public String getNIC() {
+    	return nic;
     }
     
-    public String getName() {
-    	return name;
+    public String getFirstName() {
+    	return firstName;
+    }
+    
+    public String getLastName() {
+    	return lastName;
+    }
+    
+    public String getTelephone() {
+    	return telephone;
+    }
+    
+    public String getCompany() {
+    	return company;
     }
     
     public String getAddress() {
     	return address;
     }
     
-    public int getTel() {
-    	return tel;
+    public void setNic(String nic) {
+		this.nic = nic;
+	}
+    
+    public void setFirstName(String firstName) {
+    	this.firstName = firstName;
     }
     
-    public String getDescription() {
-    	return description;
+    public void setLastName(String lastName) {
+    	this.lastName = lastName;
     }
     
-    public void setName(String name) {
-    	this.name = name;
+    public void setTelephone(String tel) {
+    	this.telephone = tel;
+    }
+    
+    public void setCompany(String company) {
+    	this.company = company;
     }
     
     public void setAddress(String address) {
     	this.address = address;
     }
     
-    public void setTel(int tel) {
-    	this.tel = tel;
-    }
-    
-    public void setDescription(String description) {
-    	this.description = description;
+    // get full name
+    public String getName() {
+    	return firstName+" "+lastName;
     }
 }
