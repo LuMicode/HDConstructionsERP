@@ -47,6 +47,12 @@ public class DBConnection {
 	}
 	
 	public Connection getConnection() {
+		try {
+			System.out.println(conn.isClosed());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return conn;
 	}
 	

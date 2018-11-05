@@ -4,14 +4,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import lk.hdconstructions.erp.models.Construction;
+import lk.hdconstructions.erp.models.Customer;
 
 
 public class ConstructionDAOTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-//		Construction construction = new Construction(1, "Test construction", "123, BumbleB", "Pull down a house", "Blah blah blah");
+//		// TODO Auto-generated method stub
+//		Customer customer  = null;
+//		try {
+//			customer = CustomerDAO.getCustomerByNIC("961264022V");
+//		} catch (ClassNotFoundException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+//		Construction construction = new Construction(1, "Test construction",1232134, "123, BumbleB");
+//		construction.setCustomer(customer);
 //		
 //		try {
 //			ConstructionDAO.addNewConstruction(construction);
@@ -24,25 +36,12 @@ public class ConstructionDAOTest {
 //		}
 //	
 //		
-//		try {
-//			ArrayList<Construction> constructions = ConstructionDAO.getAllConstructions();
-//			
-//			for(Construction construction: constructions) {
-//				System.out.println(construction.getName()+": "+construction.getAddress());
-//			}
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		
-		
-		
-		try {
-			ConstructionDAO.deleteConstruction(1);
+		try{
+			ArrayList<Construction> constructions = ConstructionDAO.getAllConstructions();
+			
+			for(Construction construction: constructions) {
+				System.out.println(construction.getProjectName()+": "+construction.getAddress());
+			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,8 +50,21 @@ public class ConstructionDAOTest {
 			e.printStackTrace();
 		}
 		
-
 		
+		
+		
+//		try {
+//			ConstructionDAO.deleteConstruction(1);
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//
+//		
 	}
 
 }

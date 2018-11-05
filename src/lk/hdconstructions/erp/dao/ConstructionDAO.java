@@ -59,38 +59,59 @@ public class ConstructionDAO {
 	}
 	
 	public static ArrayList<Construction> getAllConstructions() throws ClassNotFoundException, SQLException {
-		
 		ArrayList<Construction> constructions = new ArrayList<Construction>();
 		Statement stmt = null;
+		Connection conn;
 		
-		Connection conn = DBConnection.getInstance().getConnection();
+		conn = DBConnection.getInstance().getConnection();	
 		
-		
-		stmt = conn.createStatement();
-		ResultSet results = stmt.executeQuery(QueryConstants.GET_ALL_CONSTRUCTIONS);
-		
-		while(results.next()) {
+		try {
 			
-			Construction construction = new Construction(
-						results.getInt("projectId"),
-						results.getString("projectName"),
-						results.getFloat("price"),
-						results.getString("address")
-					);
+			System.out.println(conn);
 			
-			// retrive customer details and create customer object
-			Customer customer = CustomerDAO.getCustomerByNIC(results.getString("nic"));
-			construction.setCustomer(customer);
+			stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery(QueryConstants.GET_ALL_CONSTRUCTIONS);
+			System.out.println(results);
 			
-			constructions.add(construction);
 			
+			while(results.next()) {
+				
+				Construction construction = new Construction(
+							results.getInt("projectId"),
+							results.getString("projectName"),
+							results.getFloat("price"),
+							results.getString("address")
+						);
+				
+				// retrive customer details and create customer object
+//				Customer customer = CustomerDAO.getCustomerByNIC(results.getString("nic"));
+//				construction.setCustomer(customer);
+//				
+				constructions.add(construction);
+				
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			if(conn != null) {
+				conn.rollback();
+			}
+		} finally {
+			
+			if(!stmt.isClosed()) {
+				stmt.close();
+			}
+			
+			if(!conn.isClosed()) {
+				DBConnection.getInstance().getConnection().close();
+			}
 		}
 		
 		return constructions;
 	}
 	
-
-	public static boolean deleteConstruction(int cid) throws ClassNotFoundException, SQLException{
+	
+	public static boolean deleteConstruction(int projectId) throws ClassNotFoundException, SQLException{
 		
 		PreparedStatement deleteConstructionQuery = null;
 		
@@ -98,7 +119,7 @@ public class ConstructionDAO {
 		
 		try {  
 			deleteConstructionQuery = conn.prepareStatement(QueryConstants.DELETE_CONSTRUCTION);
-			deleteConstructionQuery.setInt(1, cid);
+			deleteConstructionQuery.setInt(1, projectId);
 			
 			int rows = deleteConstructionQuery.executeUpdate();
 			System.out.println("Rows affected: "+rows);

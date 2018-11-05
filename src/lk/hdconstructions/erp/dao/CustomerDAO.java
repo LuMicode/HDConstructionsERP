@@ -206,5 +206,40 @@ public class CustomerDAO {
 		return false;
 	}
 	
+	//delete customer
+	public static boolean deleteCustomer(int nic) throws ClassNotFoundException, SQLException {
+		PreparedStatement deleteCustomerQuery = null;
+		Connection conn = DBConnection.getInstance().getConnection();
+		
+		try {
+			deleteCustomerQuery = conn.prepareStatement(QueryConstants.DELETE_CUSTOMER);
+			deleteCustomerQuery.setInt(1, nic);
+			
+			deleteCustomerQuery.executeUpdate();
+			conn.close();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			if(conn != null) {
+				conn.rollback();
+			}
+			
+		} finally {
+			
+			if(!deleteCustomerQuery.isClosed()) {
+				deleteCustomerQuery.close();
+			}
+			
+			if(!conn.isClosed()) {
+				DBConnection.getInstance().getConnection().close();
+			}
+			
+		}
+		
+		return false;
+	}
+	
+	
 }
 
