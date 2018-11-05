@@ -110,6 +110,47 @@ public class ConstructionDAO {
 		return constructions;
 	}
 	
+	//update Construction
+	public static boolean updateConstruction(Construction construction) throws ClassNotFoundException, SQLException {
+		
+		PreparedStatement updateConstructionQuery  = null;
+		Connection conn = DBConnection.getInstance().getConnection();
+		
+		try {
+			updateConstructionQuery = conn.prepareStatement(QueryConstants.UPDATE_CONSTRUCTION);
+			updateConstructionQuery.setInt(1, construction.getProjectId());
+			updateConstructionQuery.setString(2,construction.getProjectName());
+			updateConstructionQuery.setFloat(3, construction.getPrice());
+			updateConstructionQuery.setString(4, construction.getAddress());
+			
+			updateConstructionQuery.executeUpdate();
+			conn.commit();
+			
+			return true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			if(conn!= null) {
+				conn.rollback();
+			}
+		} finally {
+
+			if(!updateConstructionQuery.isClosed()) {
+				updateConstructionQuery.close();
+			}
+			
+			if(!conn.isClosed()) {
+				DBConnection.getInstance().getConnection().close();
+			}
+			
+			
+		}
+		
+		
+		return false;
+	}
+	
 	
 	public static boolean deleteConstruction(int projectId) throws ClassNotFoundException, SQLException{
 		

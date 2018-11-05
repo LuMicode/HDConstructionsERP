@@ -8,7 +8,9 @@ public class QueryConstants {
 			+ " VALUES(?, ?, ?, ?)";
 	public static final String GET_ALL_CONSTRUCTIONS = "SELECT * FROM construction";
 	public static final String DELETE_CONSTRUCTION = "DELETE from construction where cid = ?";
-	
+	public static final String UPDATE_CONSTRUCTION  = "UPDATE construction SET"
+													+ "projectName = ?,price = ?,address = ?"
+													+ "where projectId = ?";
 	
 	// Customer
 	public static final String ADD_NEW_CUSTOMER = "Insert into customer(nic, title, firstName, lastName, company, address, telephone)" + "VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -28,7 +30,4 @@ public class QueryConstants {
 	
 }
 	
-	
-	
-
 
