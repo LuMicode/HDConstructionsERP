@@ -6,10 +6,12 @@
 package lk.hdconstructions.erp.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import lk.hdconstructions.erp.utils.DBConnection;
+import lk.hdconstructions.erp.utils.constants.QueryConstants;
 
 /**
  *
@@ -19,28 +21,35 @@ public class UserDAO {
     
     public boolean CheckUserNameAndPassword(String Un, String Pass) throws SQLException, ClassNotFoundException{
         
-        
-        
- 
-        String sql = "";
         Connection conn;
         conn = DBConnection.getInstance().getConnection();
-        Statement stmt = null;
-        
+        PreparedStatement getUserByUsernameQuery = null;
         try {
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            String UserName = "";
-            String Password = "";
+            getUserByUsernameQuery = conn.prepareStatement(QueryConstants.GET_USER_BY_USERNAME);
+            getUserByUsernameQuery.setString(1, Un);
+            ResultSet rs = getUserByUsernameQuery.executeQuery();
             
             while (rs.next()){
-                   return true;
+                    // TODO: check password hash once password hash is implemented
+                   if(rs.getString("username") == Un && rs.getString("password") == Pass){
+                       return true;
+                   }
             }
             
         } catch (Exception e) {
         }finally{
-            conn.close();
-            stmt.close();
+            
+            if(!getUserByUsernameQuery.isClosed()){
+                
+                getUserByUsernameQuery.close();
+                
+            }
+            
+            if(!conn.isClosed()){
+                DBConnection.getInstance().getConnection().close();
+            }
+            
+            
         }
         
         
