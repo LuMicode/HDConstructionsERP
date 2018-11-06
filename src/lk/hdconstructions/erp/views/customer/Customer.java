@@ -18,6 +18,10 @@ public class Customer extends javax.swing.JFrame {
         initComponents();
     }
 
+    Customer(String nic, String title, String firstName, String lastName, String company, String address, String telephone) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -132,19 +132,25 @@ public class Login extends javax.swing.JFrame {
         
             User user = UserDAO.GetUserByUserName(un);
 
-                    
-            if(user.validateUser(un, pass)==true){
                 AdminHome adminHome = new AdminHome();
                 adminHome.setVisible(true);
                 adminHome.pack();
                 adminHome.setLocationRelativeTo(null);
                 this.setVisible(false);
-            }else{
-                JOptionPane.showMessageDialog(null,"User invalid!");
-            }
-            }
+                    
+//            if(user.validateUser(un, pass)==true){
+//                AdminHome adminHome = new AdminHome();
+//                adminHome.setVisible(true);
+//                adminHome.pack();
+//                adminHome.setLocationRelativeTo(null);
+//                this.setVisible(false);
+//            }else{
+//                JOptionPane.showMessageDialog(null,"User invalid!");
+//            }
+        }
         
         catch(Exception e){
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Something went wrong!");
         }
         

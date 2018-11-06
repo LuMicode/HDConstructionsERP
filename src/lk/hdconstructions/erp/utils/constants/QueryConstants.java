@@ -30,7 +30,7 @@ public class QueryConstants {
 	
 	
 	//User
-	public static final String GET_USER_BY_USERNAME = "Select * from userTable WHERE userId = ?";
+	public static final String GET_USER_BY_USERNAME = "Select * from user WHERE userId = ?";
 }
 	
 

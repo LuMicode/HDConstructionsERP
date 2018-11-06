@@ -5,6 +5,13 @@
  */
 package lk.hdconstructions.erp.views.customer;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import lk.hdconstructions.erp.dao.CustomerDAO;
+import lk.hdconstructions.erp.models.Customer;
+
 /**
  *
  * @author tharindu
@@ -226,7 +233,62 @@ public class AddCustomer extends javax.swing.JFrame {
     }//GEN-LAST:event_NICTextActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            String title = titleCombo.getSelectedItem().toString();
+            String nic = NICText.getText().toString();
+            String firstName = firstNameText.getText().toString();
+            String lastName = secondNameText.getText().toString();
+            String company = companyText.getText().toString();
+            String address = addressText.getText().toString();
+            String telephone = telText.getText().toString();
+            
+            System.out.println(nic);
+            
+            if(nic == null | nic.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Please enter NIC number");
+                return;
+            }
+            
+            if(firstName == null | firstName.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Please enter First Name");
+                return;
+            }
+            
+            if(lastName == null | lastName.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Please enter Last Name");
+                return;
+            }
+            
+            if(company == null | company.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Please enter company name");
+                return;
+            }
+            
+            if(address == null | address.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter address");
+                return;
+            }
+            
+            if(telephone == null | telephone.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Please enter contact number");
+                return;
+            }
+            
+            Customer customer = new Customer(nic, title, firstName, lastName, company, address, telephone);
+            if(CustomerDAO.addNewCustomer(customer)){
+                
+                JOptionPane.showMessageDialog(this, "Customer record added!");
+                clearTextFields();
+                return;
+            }
+            
+            JOptionPane.showMessageDialog(this, "Could not process request. Please try again!");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -263,6 +325,15 @@ public class AddCustomer extends javax.swing.JFrame {
                 new AddCustomer().setVisible(true);
             }
         });
+    }
+    
+    private void clearTextFields() {
+        NICText.setText("");
+        firstNameText.setText("");
+        secondNameText.setText("");
+        companyText.setText("");
+        addressText.setText("");
+        telText.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

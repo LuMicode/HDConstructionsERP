@@ -1,32 +1,32 @@
 package lk.hdconstructions.erp.models;
 
 public class Customer {
-	
-	private String nic;
-	private String title;
-	private String firstName;
-	private String lastName;
-	private String company;
-	private String address;
-	private String telephone;
-	
-	public Customer(String nic, String title,  String firstName, String lastName, String company, String address, String tel) {
-		this.nic = nic;
-		this.title = title;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.company = company;
-		this.address = address;
-		this.telephone = tel;
-	}
+
+    private String nic;
+    private String title;
+    private String firstName;
+    private String lastName;
+    private String company;
+    private String address;
+    private String telephone;
+
+    public Customer(String nic, String title,  String firstName, String lastName, String company, String address, String tel) {
+            this.nic = nic;
+            this.title = title;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.company = company;
+            this.address = address;
+            this.telephone = tel;
+    }
 
     
 	
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+            return title;
+    }
 
-	public String getNIC() {
+    public String getNIC() {
     	return nic;
     }
     
