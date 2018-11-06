@@ -28,6 +28,9 @@ public class QueryConstants {
 												+ "WHERE empNic = ?";
 	public static final String DELETE_EMPLOYEE = "DELETE from employee where empId = ?";
 	
+	
+	//User
+	public static final String GET_USER_BY_USERNAME = "Select * from userTable WHERE userId = ?";
 }
 	
 

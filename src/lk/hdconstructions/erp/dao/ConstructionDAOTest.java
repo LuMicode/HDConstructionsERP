@@ -23,9 +23,10 @@ public class ConstructionDAOTest {
 //		}
 		
 //		
+	
 //		Construction construction = new Construction(1, "Test construction",1232134, "123, BumbleB");
-//		construction.setCustomer(customer);
-//		
+////		construction.setCustomer(customer);
+////		
 //		try {
 //			ConstructionDAO.addNewConstruction(construction);
 //		} catch (ClassNotFoundException e) {
@@ -33,9 +34,9 @@ public class ConstructionDAOTest {
 //			e.printStackTrace();
 //		} catch (SQLException e) {
 //			// TODO Auto-generated catch block
-//			e.printStackTrace();
+	//		e.printStackTrace();
 //		}
-//	
+	
 //		
 //		try{
 //			ArrayList<Construction> constructions = ConstructionDAO.getAllConstructions();
@@ -50,7 +51,7 @@ public class ConstructionDAOTest {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+//		
 		
 		
 		
@@ -63,27 +64,28 @@ public class ConstructionDAOTest {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+//		
 	Construction construction = new Construction(12312,"kjbn",878090,"goodworm");
-//		
-//		
-////		
+		
+		
+		
 		try {
 			ConstructionDAO.addNewConstruction(construction);
 		
-//			construction.setPrice(10000000);
-//			ConstructionDAO.updateConstruction(construction);
-//			
-//			
+			construction.setPrice(10000000);
+			ConstructionDAO.updateConstruction(construction);
+			
+			
 		}catch (ClassNotFoundException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}catch (SQLException e) {
 			// TODO: handle exception
-			e.printStackTrace();
+		e.printStackTrace();
 		}
 		
-////		
+		
+		
 //
 //		
 	}

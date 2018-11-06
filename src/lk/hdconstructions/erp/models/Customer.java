@@ -19,6 +19,8 @@ public class Customer {
 		this.address = address;
 		this.telephone = tel;
 	}
+
+    
 	
 	public String getTitle() {
 		return title;
@@ -80,4 +82,5 @@ public class Customer {
     public String getName() {
     	return firstName+" "+lastName;
     }
+
 }
