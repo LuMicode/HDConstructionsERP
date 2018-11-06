@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import lk.hdconstructions.erp.utils.DBConnection;
 import lk.hdconstructions.erp.utils.constants.QueryConstants;
+import lk.hdconstructions.erp.models.User;
 
 /**
  *
@@ -19,22 +20,22 @@ import lk.hdconstructions.erp.utils.constants.QueryConstants;
  */
 public class UserDAO {
     
-    public boolean CheckUserNameAndPassword(String Un, String Pass) throws SQLException, ClassNotFoundException{
+    public static User GetUserByUserName(String Un) throws SQLException, ClassNotFoundException{
         
         Connection conn;
         conn = DBConnection.getInstance().getConnection();
         PreparedStatement getUserByUsernameQuery = null;
+        User user = null;
+
         try {
             getUserByUsernameQuery = conn.prepareStatement(QueryConstants.GET_USER_BY_USERNAME);
             getUserByUsernameQuery.setString(1, Un);
             ResultSet rs = getUserByUsernameQuery.executeQuery();
             
             while (rs.next()){
-                    // TODO: check password hash once password hash is implemented
-                   if(rs.getString("username") == Un && rs.getString("password") == Pass){
-                       return true;
-                   }
+                   user = new User(rs.getString("username"), rs.getString("passoword"));
             }
+            
             
         } catch (Exception e) {
         }finally{
@@ -53,7 +54,7 @@ public class UserDAO {
         }
         
         
-        return false;
+        return user;
     } 
     
 }

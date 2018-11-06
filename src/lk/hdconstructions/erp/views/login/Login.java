@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import lk.hdconstructions.erp.dao.UserDAO;
 import lk.hdconstructions.erp.views.other.AdminHome;
+import lk.hdconstructions.erp.models.User;
 
 /**
  *
@@ -127,7 +128,6 @@ public class Login extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
-        UserDAO dao = new UserDAO();
         String un = this.userText.getText().toString();
         String pass = this.passText.getText().toString();
         
@@ -143,7 +143,8 @@ public class Login extends javax.swing.JFrame {
         }
 
         try{
-            if(dao.CheckUserNameAndPassword(un, pass)==true){
+            User user = UserDAO.GetUserByUserName(un);
+            if(user != null & user.validateUser(un, pass)){
                 AdminHome adminHome = new AdminHome();
                 adminHome.setVisible(true);
                 adminHome.pack();
@@ -155,6 +156,7 @@ public class Login extends javax.swing.JFrame {
         }
         
         catch(Exception e){
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Something went wrong!");
         }
         
