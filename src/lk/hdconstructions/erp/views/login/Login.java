@@ -27,6 +27,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -129,17 +130,28 @@ public class Login extends javax.swing.JFrame {
         UserDAO dao = new UserDAO();
         String un = this.userText.getText().toString();
         String pass = this.passText.getText().toString();
+        
+        // validate user input
+        if(un == null | un.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a username.");
+            return;
+        }
+        
+        if(pass == null | pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a password.");
+            return;
+        }
 
         try{
-        if(dao.CheckUserNameAndPassword(un, pass)==true){
-            AdminHome adminHome = new AdminHome();
-            adminHome.setVisible(true);
-            adminHome.pack();
-            adminHome.setLocationRelativeTo(null);
-            this.setVisible(false);
-        }else{
-            JOptionPane.showMessageDialog(null,"User invalid!");
-        }
+            if(dao.CheckUserNameAndPassword(un, pass)==true){
+                AdminHome adminHome = new AdminHome();
+                adminHome.setVisible(true);
+                adminHome.pack();
+                adminHome.setLocationRelativeTo(null);
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null,"Invalid user credentials! Please enter again.");
+            }
         }
         
         catch(Exception e){
