@@ -5,6 +5,8 @@
  */
 package lk.hdconstructions.erp.views.employee;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author tharindu
@@ -28,27 +30,42 @@ public class EmployeeHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        addEmpButton = new javax.swing.JButton();
+        updateEmpButton = new javax.swing.JButton();
+        delEmpButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        viewEmpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Add Employee");
+        addEmpButton.setText("Add Employee");
+        addEmpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmpButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Update Employee");
-        jButton2.setToolTipText("");
+        updateEmpButton.setText("Update Employee");
+        updateEmpButton.setToolTipText("");
+        updateEmpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateEmpButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Delete Employee");
+        delEmpButton.setText("Delete Employee");
+        delEmpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delEmpButtonActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Menu");
 
-        jButton5.setText("View Employee");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        viewEmpButton.setText("View Employee");
+        viewEmpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                viewEmpButtonActionPerformed(evt);
             }
         });
 
@@ -64,33 +81,33 @@ public class EmployeeHome extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(delEmpButton)
+                            .addComponent(updateEmpButton)
+                            .addComponent(addEmpButton)
+                            .addComponent(viewEmpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 110, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton5});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addEmpButton, delEmpButton, updateEmpButton, viewEmpButton});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(addEmpButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(updateEmpButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(delEmpButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addComponent(viewEmpButton)
                 .addGap(4, 4, 4)
                 .addComponent(jButton4)
                 .addGap(17, 17, 17))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton5});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addEmpButton, delEmpButton, updateEmpButton, viewEmpButton});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,9 +129,42 @@ public class EmployeeHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void viewEmpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmpButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        ViewEmployee view = new ViewEmployee();
+        view.setVisible(true);
+        view.pack();
+        view.setLocationRelativeTo(null);
+        view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_viewEmpButtonActionPerformed
+
+    private void addEmpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpButtonActionPerformed
+        // TODO add your handling code here:
+        AddEmployee add = new AddEmployee();
+        add.setVisible(true);
+        add.pack();
+        add.setLocationRelativeTo(null);
+        add.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_addEmpButtonActionPerformed
+
+    private void updateEmpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateEmpButtonActionPerformed
+        // TODO add your handling code here:
+        UpdateEmployee updt = new UpdateEmployee();
+        updt.setVisible(true);
+        updt.pack();
+        updt.setLocationRelativeTo(null);
+        updt.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_updateEmpButtonActionPerformed
+
+    private void delEmpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEmpButtonActionPerformed
+        // TODO add your handling code here:
+        DeleteEmployee del = new DeleteEmployee();
+        del.setVisible(true);
+        del.pack();
+        del.setLocationRelativeTo(null);
+        del.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+    }//GEN-LAST:event_delEmpButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,11 +203,11 @@ public class EmployeeHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton addEmpButton;
+    private javax.swing.JButton delEmpButton;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton updateEmpButton;
+    private javax.swing.JButton viewEmpButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package lk.hdconstructions.erp.views.construction;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author tharindu
@@ -28,18 +30,23 @@ public class ConstructionHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        addConstructButton = new javax.swing.JButton();
+        updateConstructButton = new javax.swing.JButton();
+        delConstructButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Add Construction");
+        addConstructButton.setText("Add Construction");
+        addConstructButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addConstructButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Update Construction");
+        updateConstructButton.setText("Update Construction");
 
-        jButton3.setText("Delete Construction");
+        delConstructButton.setText("Delete Construction");
 
         jButton5.setText("Menu");
 
@@ -52,26 +59,26 @@ public class ConstructionHome extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(delConstructButton)
+                            .addComponent(updateConstructButton)
+                            .addComponent(addConstructButton))
                         .addGap(98, 98, 98))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addGap(16, 16, 16))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addConstructButton, delConstructButton, updateConstructButton});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(addConstructButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(updateConstructButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(delConstructButton)
                 .addGap(56, 56, 56)
                 .addComponent(jButton5)
                 .addContainerGap())
@@ -96,6 +103,15 @@ public class ConstructionHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addConstructButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConstructButtonActionPerformed
+        // TODO add your handling code here:
+        AddConstruction add = new AddConstruction();
+        add.setVisible(true);
+        add.pack();
+        add.setLocationRelativeTo(null);
+        add.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_addConstructButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,10 +150,10 @@ public class ConstructionHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton addConstructButton;
+    private javax.swing.JButton delConstructButton;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton updateConstructButton;
     // End of variables declaration//GEN-END:variables
 }
