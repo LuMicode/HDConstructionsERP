@@ -8,7 +8,7 @@ package lk.hdconstructions.erp.views.other;
 import javax.swing.JFrame;
 import lk.hdconstructions.erp.models.Customer;
 import lk.hdconstructions.erp.views.construction.ConstructionHome;
-import lk.hdconstructions.erp.views.customer.CustomerHome;
+import lk.hdconstructions.erp.views.customer.CustomerMain;
 import lk.hdconstructions.erp.views.employee.EmployeeHome;
 
 /**
@@ -126,7 +126,7 @@ public class AdminHome extends javax.swing.JFrame {
 
     private void customerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerButtonActionPerformed
         // TODO add your handling code here:
-        CustomerHome customers = new CustomerHome();
+        CustomerMain customers = new CustomerMain();
         customers.setVisible(true);
         customers.pack();
         customers.setLocationRelativeTo(null);
