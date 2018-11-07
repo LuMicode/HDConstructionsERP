@@ -24,9 +24,21 @@ public class AddCustomer extends javax.swing.JFrame {
      */
     public AddCustomer() {
         initComponents();
+        updateButton.setVisible(false);
     }
     
     public AddCustomer(Customer customer) {
+        
+        System.out.print(customer);
+        
+        addButton.setVisible(false);
+        NICText.setText(customer.getNIC());
+        firstNameText.setText(customer.getFirstName());
+        secondNameText.setText(customer.getLastName());
+        companyText.setText(customer.getCompany());
+        addressText.setText(customer.getAddress());
+        telText.setText(customer.getTelephone());
+        titleCombo.setSelectedItem(customer.getTitle());
         
     }
 

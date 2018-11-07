@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javax.swing.table.DefaultTableModel;
 import lk.hdconstructions.erp.dao.CustomerDAO;
 import lk.hdconstructions.erp.models.Customer;
@@ -45,8 +46,8 @@ public class CustomerMain extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnAddCustomer = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnUpdateCustomer = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         customersTable = new javax.swing.JTable();
@@ -68,9 +69,19 @@ public class CustomerMain extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Update Customer");
+        btnUpdateCustomer.setText("Update Customer");
+        btnUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateCustomerActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Delete Customer");
+        btnDelete.setText("Delete Customer");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Menu");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -88,9 +99,9 @@ public class CustomerMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnAddCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnUpdateCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btnDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
@@ -101,8 +112,8 @@ public class CustomerMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddCustomer)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(btnUpdateCustomer)
+                    .addComponent(btnDelete)
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,6 +153,30 @@ public class CustomerMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadAllCustomers();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btnUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCustomerActionPerformed
+        try {
+            // TODO add your handling code here:
+            int row = customersTable.getSelectedRow();
+            String nic = customersTable.getModel().getValueAt(row, 2).toString();
+            Customer customer = CustomerDAO.getCustomerByNIC(nic);
+            
+            System.out.print(customer.getFirstName());
+            AddCustomer addCustomer = new AddCustomer();
+            addCustomer.show();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CustomerMain.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnUpdateCustomerActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,9 +247,9 @@ public class CustomerMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCustomer;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdateCustomer;
     private javax.swing.JTable customersTable;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

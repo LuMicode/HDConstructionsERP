@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import lk.hdconstructions.erp.models.Customer;
 import lk.hdconstructions.erp.models.Employee;
@@ -24,7 +26,7 @@ public class EmployeeDAO {
 			
 			addEmployeeQuery = conn.prepareStatement(QueryConstants.ADD_NEW_EMPLOYEE);
 			addEmployeeQuery.setString(1, employee.getEmpTitle());
-			addEmployeeQuery.setInt(2, employee.getEmpNic());
+			addEmployeeQuery.setString(2, employee.getEmpNic());
 			addEmployeeQuery.setString(3, employee.getFirstName());
 			addEmployeeQuery.setString(4, employee.getLastName());
 			addEmployeeQuery.setString(5, employee.getTelephone());
@@ -51,28 +53,27 @@ public class EmployeeDAO {
 	}
 	
 	//Get employee details by employee nic
-	public static Employee getEmployeeByNIC(String empNic) throws ClassNotFoundException, SQLException {
+	public static ArrayList<Employee> getAllEmployee() throws ClassNotFoundException, SQLException {
 		
-		Employee employee  =  null;
-		PreparedStatement getEmployeeByNICQuery = null;
-		
+		ArrayList<Employee> employees = new ArrayList<Employee>();
+		Statement stmt = null;
+                
 		Connection conn = DBConnection.getInstance().getConnection();
 		
 		try {
-			
-			getEmployeeByNICQuery = conn.prepareStatement(QueryConstants.GET_EMPLOYEE_BY_NIC);
-			getEmployeeByNICQuery.setString(1, empNic);
-			ResultSet results = getEmployeeByNICQuery.executeQuery();
+			stmt = conn.createStatement();
+                        ResultSet results = stmt.executeQuery(QueryConstants.GET_ALL_EMPLOYEE);
 			
 			while(results.next()) {
-				employee = new Employee(
+			Employee employee = new Employee(
 							results.getString("empTitle"),
-							results.getInt("empId"),
+							results.getString("empId"),
 							results.getString("firstName"),
 							results.getString("lastName"),
 							results.getString("address"),
 							results.getString("telephone")
 						);
+                        employees.add(employee);
 			}
 			
 		} catch (SQLException e) {
@@ -84,8 +85,8 @@ public class EmployeeDAO {
 			
 		} finally {
 			
-			if(!getEmployeeByNICQuery.isClosed()) {
-				getEmployeeByNICQuery.close();
+			if(!stmt.isClosed()) {
+				stmt.close();
 			}
 			
 			if(!conn.isClosed()) {
@@ -94,7 +95,7 @@ public class EmployeeDAO {
 			
 		}
 		
-		return employee;
+		return employees;
 	}
 	
 	//update employee details
@@ -111,7 +112,7 @@ public class EmployeeDAO {
 			updateEmployeeQuery.setString(3, employee.getLastName());
 			updateEmployeeQuery.setString(4, employee.getAddress());
 			updateEmployeeQuery.setString(5, employee.getTelephone());
-			updateEmployeeQuery.setInt(6, employee.getEmpNic());
+			updateEmployeeQuery.setString(6, employee.getEmpNic());
 			
 			updateEmployeeQuery.executeUpdate();
 			conn.commit();
@@ -149,7 +150,7 @@ public class EmployeeDAO {
 			deleteEmployeeQuery = conn.prepareStatement(QueryConstants.DELETE_EMPLOYEE);
 			deleteEmployeeQuery.setInt(1, empId);
 			
-			deleteEmployeeQuery.executeUpdate();
+			deleteEmployeeQuery.execute();
 			conn.close();
 			
 		} catch (SQLException e) {

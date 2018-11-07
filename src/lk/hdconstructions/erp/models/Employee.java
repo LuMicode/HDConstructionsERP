@@ -2,14 +2,13 @@ package lk.hdconstructions.erp.models;
 
 public class Employee {
 	private String empTitle;
-	private int empNic;
-	private int empId;
+	private String empNic;
 	private String firstName;
 	private String lastName;
 	private String telephone;
 	private String address;
 	
-	public Employee(String empTitle, int empNic,String firstName, String lastName, String telephone, String address ) {
+	public Employee(String empTitle, String empNic,String firstName, String lastName, String telephone, String address ) {
 		this.empTitle = empTitle;
 		this.empNic = empNic;
 		this.firstName = firstName;
@@ -22,7 +21,7 @@ public class Employee {
 		this.empTitle = empTitle;
 	}
 	
-	public void setEmpNic(int empNic) {
+	public void setEmpNic(String empNic) {
 		this.empNic = empNic;
 	}
 	
@@ -46,7 +45,7 @@ public class Employee {
 		return empTitle;
 	}
 	
-	public int getEmpNic() {
+	public String getEmpNic() {
 		return empNic;
 	}
 	

@@ -65,28 +65,28 @@ public class ConstructionDAOTest {
 //			e.printStackTrace();
 //		}
 //		
-	Construction construction = new Construction(12312,"kjbn",878090,"goodworm");
-		
-		
-		
-		try {
-			ConstructionDAO.addNewConstruction(construction);
-		
-			construction.setPrice(10000000);
-			ConstructionDAO.updateConstruction(construction);
-			
-			
-		}catch (ClassNotFoundException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}catch (SQLException e) {
-			// TODO: handle exception
-		e.printStackTrace();
-		}
-		
-		
-		
-//
+//	Construction construction = new Construction(12312,"kjbn",878090,"goodworm");
+//		
+//		
+//		
+//		try {
+//			ConstructionDAO.addNewConstruction(construction);
+//		
+//			construction.setPrice(10000000);
+//			ConstructionDAO.updateConstruction(construction);
+//			
+//			
+//		}catch (ClassNotFoundException e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}catch (SQLException e) {
+//			// TODO: handle exception
+//		e.printStackTrace();
+//		}
+//		
+//		
+//		
+////
 //		
 	}
 

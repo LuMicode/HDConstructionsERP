@@ -7,9 +7,9 @@ package lk.hdconstructions.erp.views.other;
 
 import javax.swing.JFrame;
 import lk.hdconstructions.erp.models.Customer;
-import lk.hdconstructions.erp.views.construction.ConstructionHome;
+import lk.hdconstructions.erp.views.construction.ConstructionMain;
 import lk.hdconstructions.erp.views.customer.CustomerMain;
-import lk.hdconstructions.erp.views.employee.EmployeeHome;
+import lk.hdconstructions.erp.views.employee.EmployeeMain;
 
 /**
  *
@@ -117,7 +117,7 @@ public class AdminHome extends javax.swing.JFrame {
 
     private void employeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeButtonActionPerformed
         // TODO add your handling code here:
-        EmployeeHome employee = new EmployeeHome();
+        EmployeeMain employee = new EmployeeMain();
         employee.setVisible(true);
         employee.pack();
         employee.setLocationRelativeTo(null);
@@ -136,7 +136,7 @@ public class AdminHome extends javax.swing.JFrame {
 
     private void constructionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_constructionButtonActionPerformed
         // TODO add your handling code here:
-        ConstructionHome construction = new ConstructionHome();
+        ConstructionMain construction = new ConstructionMain();
         construction.setVisible(true);
         construction.pack();
         construction.setLocationRelativeTo(null);

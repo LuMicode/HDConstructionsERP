@@ -22,7 +22,7 @@ public class QueryConstants {
 	public static final String DELETE_CUSTOMER = "DELETE from customer where nic = ?";
 	//Employee
 	public static final String ADD_NEW_EMPLOYEE = "Insert into employee(empTitle, empNic, firstName, lastName, telephone, address)" + "Values(?, ?, ?, ?, ?, ?)" ;
-	public static final String GET_EMPLOYEE_BY_NIC = "SELECT * from employee WHERE empNic = ?";
+	public static final String GET_ALL_EMPLOYEE = "SELECT * from employee";
 	public static final String UPDATE_EMPLOYEE = "UPDATE employee SET "
 												+ "empTitle = ?, firstName = ?, lastName =?, telephone =?, address =?"
 												+ "WHERE empNic = ?";
